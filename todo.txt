@@ -1,0 +1,3 @@
+- Additional information from abstracts (author - optional: date)
+- Optimize program/searching/scalability (extract)
+- Saving Data Scraped -- searchability later most important
