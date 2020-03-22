@@ -20,16 +20,3 @@ while True:  # Event Loop
         window['-OUTPUT-'](values['-IN-'])
 
 window.close()
-
-'''
-{# marketing journals
-                        'jams': 'Journal of Academy of Marketing Science',
-                        'jm': 'Journal of Marketing',
-                        'jmr': 'Journal of Marketing Research',
-                        'mktsc': 'Marketing Science',
-                        'mgmtsc': 'Management Science',
-                        # management journals
-                        'asq':'Administrative Science Quarterly',
-                        'aomj':'Academy of Management Journal',
-                        'aomr':'Academy of Management Review'}
-'''
