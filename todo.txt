@@ -1,2 +1,4 @@
+TODO:
+
 - requestLogic File Lines 81-116: find a better and more accurate way to return the integer.
  +we may have to write a scrubbing function or something because a comma will throw the whole thing off.
