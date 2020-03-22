@@ -1,5 +1,4 @@
 import PySimpleGUI as sg
-import os
 
 def settings_menu(version):
     #GreenTan
