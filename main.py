@@ -11,13 +11,16 @@ from settingsGUI import SettingsMenu
 from requestLogic import ScanForResults
 from browseGUI import BrowseGUI
 from constants import Constants
+from pleaseWaitGUI import *
 
-def settings():
+def main():
     #instantiate settings gui
     settings = SettingsMenu(__version__)
     #run settings GUI and return values into variables
     setting_event, setting_value = settings.create_settings_window()
 
+    #TODO Please wait window probably a nice thing to have here:
+    show_loading()
     #instantiate RequestLogic Object
     scan = ScanForResults()
 
@@ -58,12 +61,14 @@ def settings():
         aomr = scan.get_max_results(scan.journal)
         browse.append_journal(aomr, Constants.journal_titles[7], Constants.journal_keys[7])
     
+    remove_loading()
     #run settings GUI and return values into variables
     browse_event, browse_value = browse.create_window()
+    #browse_value doesnt return anything right now because theres no input
+    #browse_event returns the -KEY- inserted in browse.append_journal above.
+    print('Event:', browse_event)
+    print('Values:', browse_value)
         
-
-def main():
-    settings()
 
 if __name__ == '__main__':
     main()

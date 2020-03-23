@@ -11,8 +11,8 @@ class BrowseGUI:
         #Append Journal Text, Name, and Key specified in call to the laout
         self.layout.append([sg.Frame(layout=[
         [sg.Text('Results:', justification='center')], 
-        [sg.Text(text, key=journalKey, justification='center')],
-        [sg.Button('Browse Abstracts from this Journal')],
+        [sg.Text(text)],
+        [sg.Button('Browse Abstracts from this Journal', key=journalKey)],
         [sg.Text('_' * 60)]
         ], title=journalName,title_color='black', relief=sg.RELIEF_SUNKEN)])
         

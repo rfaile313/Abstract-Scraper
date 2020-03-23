@@ -4,7 +4,11 @@
  we may have to write a scrubbing function or something because a comma will throw the whole thing off. 
  sometimes doesn't even return the correct thing in terminal as string
 
-- correctly implement API call for abstracts with class. 
+- work on actual browse logic (lines 168+ in old.py)
 
-- finish GUIs 
+- next GUI screens to browse abstracts and search around and stuff
+
+- improve current browse GUI (cancel, more options, back to settings, etc)
+
+- 
 

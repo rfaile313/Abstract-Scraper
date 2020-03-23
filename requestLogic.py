@@ -11,7 +11,10 @@ class ScanForResults:
 
         self.journal = journal
 
-        print(journal) #debugging
+        #debugging / turn off in prod
+        #########################
+        print(journal)
+        #########################
 
         #Year Tag
         self.after_year_tag = aytag
