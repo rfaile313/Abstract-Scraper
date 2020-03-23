@@ -9,7 +9,6 @@ __status__ = "Development"
 
 from settingsGUI import SettingsMenu
 from requestLogic import ScanForResults
-from pleaseWait import ProgressGUI
 
 def settings():
     #instantiate settings gui
@@ -17,10 +16,8 @@ def settings():
     #run settings GUI and return values into variables
     setting_event, setting_value = settings.create_settings_window()
 
+    #instantiate RequestLogic Object
     scan = ScanForResults()
-
-    #please_wait = ProgressGUI()
-
 
     #Value[0] is search string / 1-8 are journals/9 is year/10 is sort
     if setting_value[1] == True:
@@ -56,7 +53,6 @@ def settings():
         aomr = scan.get_max_results(scan.journal)
         print(aomr)#returned value for use #debugging
         
-    
 
 def main():
     settings()

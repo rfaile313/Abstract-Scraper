@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import PySimpleGUI as sg
 
 class ScanForResults:
 
