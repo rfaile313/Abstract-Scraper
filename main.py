@@ -9,6 +9,8 @@ __status__ = "Development"
 
 from settingsGUI import SettingsMenu
 from requestLogic import ScanForResults
+from browseGUI import BrowseGUI
+from constants import Constants
 
 def settings():
     #instantiate settings gui
@@ -19,39 +21,45 @@ def settings():
     #instantiate RequestLogic Object
     scan = ScanForResults()
 
+    #instantiate BrowserGUI in order to insert journals into layout:
+    browse = BrowseGUI()
+
     #Value[0] is search string / 1-8 are journals/9 is year/10 is sort
     if setting_value[1] == True:
         scan.search_sort(setting_value[0], 'jams', setting_value[9], setting_value[10])
         jams = scan.get_max_results(scan.journal)
-        print(jams)#returned value for use #debugging
+        browse.append_journal(jams, Constants.journal_titles[0], Constants.journal_keys[0])
     if setting_value[2] == True:
         scan.search_sort(setting_value[0], 'jm', setting_value[9], setting_value[10])
         jm = scan.get_max_results(scan.journal)
-        print(jm)#returned value for use #debugging
+        browse.append_journal(jm, Constants.journal_titles[1], Constants.journal_keys[1])
     if setting_value[3] == True:
         scan.search_sort(setting_value[0], 'jmr', setting_value[9], setting_value[10])
         jmr = scan.get_max_results(scan.journal)
-        print(jmr)#returned value for use #debugging
+        browse.append_journal(jmr, Constants.journal_titles[2], Constants.journal_keys[2])
     if setting_value[4] == True:
         scan.search_sort(setting_value[0], 'mktsc', setting_value[9], setting_value[10])
         mktsc = scan.get_max_results(scan.journal)
-        print(mktsc)#returned value for use #debugging
+        browse.append_journal(mktsc, Constants.journal_titles[3], Constants.journal_keys[3])
     if setting_value[5] == True:
         scan.search_sort(setting_value[0], 'mgmtsc', setting_value[9], setting_value[10])
         mgmtsc = scan.get_max_results(scan.journal)
-        print(mgmtsc)#returned value for use #debugging
+        browse.append_journal(mgmtsc, Constants.journal_titles[4], Constants.journal_keys[4])
     if setting_value[6] == True:
         scan.search_sort(setting_value[0], 'asq', setting_value[9], setting_value[10])
         asq = scan.get_max_results(scan.journal)
-        print(asq)#returned value for use #debugging
+        browse.append_journal(asq, Constants.journal_titles[5], Constants.journal_keys[5])
     if setting_value[7] == True:
         scan.search_sort(setting_value[0], 'aomj', setting_value[9], setting_value[10])
         aomj = scan.get_max_results(scan.journal)
-        print(aomj)#returned value for use #debugging
+        browse.append_journal(aomj, Constants.journal_titles[6], Constants.journal_keys[6])
     if setting_value[8] == True:
         scan.search_sort(setting_value[0], 'aomr', setting_value[9], setting_value[10])
         aomr = scan.get_max_results(scan.journal)
-        print(aomr)#returned value for use #debugging
+        browse.append_journal(aomr, Constants.journal_titles[7], Constants.journal_keys[7])
+    
+    #run settings GUI and return values into variables
+    browse_event, browse_value = browse.create_window()
         
 
 def main():

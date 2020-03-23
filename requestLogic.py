@@ -1,33 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+from constants import Constants
 
 class ScanForResults:
-
-    def __init__(self):
-
-        self.journal_title = {
-                # marketing journals
-                'jams': 'Journal of Academy of Marketing Science',
-                'jm': 'Journal of Marketing',
-                'jmr': 'Journal of Marketing Research',
-                'mktsc': 'Marketing Science',
-                'mgmtsc': 'Management Science',
-                # management journals
-                'asq':'Administrative Science Quarterly',
-                'aomj':'Academy of Management Journal',
-                'aomr':'Academy of Management Review'}
-
-        self.base_urls = {
-                # marketing journals
-                'jm': 'https://journals.sagepub.com/action/doSearch?&publication=jmxa',
-                'jmr': 'https://journals.sagepub.com/action/doSearch?&publication=mrja',
-                'mktsc': 'https://pubsonline.informs.org/action/doSearch?&publication[]=mksc',
-                'mgmtsc': 'https://pubsonline.informs.org/action/doSearch?&publication[]=mnsc',
-                'jams': 'https://link.springer.com/search?search-within=Journal&facet-journal-id=11747',
-                # management journals
-                'aomj': 'https://journals.aom.org/action/doSearch?&publication[]=amj',
-                'aomr': 'https://journals.aom.org/action/doSearch?&publication[]=amr',
-                'asq': 'https://journals.sagepub.com/action/doSearch?&publication=asqa'}
 
     def search_sort(self, search_string, journal, aytag, srt_by):
 
@@ -64,7 +39,7 @@ class ScanForResults:
 
 
     def url_builder(self, journal):
-        return (requests.get(self.base_urls[journal], params=self.payload[journal]).url)
+        return (requests.get(Constants.base_urls[journal], params=self.payload[journal]).url)
 
     #Get result count for website
     def get_max_results(self, journal):
@@ -76,7 +51,7 @@ class ScanForResults:
         if journal == 'mktsc' or journal == 'mgmtsc':
             if soup.find('span', {'class': 'result__count'}) is not None:
                 total_hits = soup.find('span', {'class': 'result__count'}).text
-                return 'Total number of hits returned for {} in {} is {}'.format(self.search_tag, self.journal_title[journal], total_hits)
+                return 'Hits for: "{}" in {} is {}'.format(self.search_tag, Constants.journal_title[journal], total_hits)
             else:
                 total_hits = '0'
                 return 'There were 0 total results'
@@ -84,7 +59,7 @@ class ScanForResults:
         elif journal == 'jm' or journal == 'jmr':
             if soup.find('div', {'class': 'paginationStatus'}) is not None:
                 total_hits = soup.find('div', {'class': 'paginationStatus'}).text
-                return 'Total number of hits returned for {} in {} is {}'.format(self.search_tag, self.journal_title[journal], total_hits[-1])
+                return 'Hits for: "{}" in {} is {}'.format(self.search_tag, Constants.journal_title[journal], total_hits[-1])
             else:
                 total_hits = '0'
                 return 'There were 0 total results'
@@ -93,7 +68,7 @@ class ScanForResults:
             if soup.find('div', {'class': 'header'}) is not None:
                 total_hits = soup.find('div', {'class': 'header'}).text
                 #idk why this journal string slice is so weird -- we need to fix all of these PALLAV
-                return 'Total number of hits returned for {} in {} is {}'.format(self.search_tag, self.journal_title[journal], total_hits[2:9])
+                return 'Hits for: "{}" in {} is {}'.format(self.search_tag, Constants.journal_title[journal], total_hits[2:9])
             else:
                 total_hits = '0'
                 return 'There were 0 total results' 
@@ -102,7 +77,7 @@ class ScanForResults:
         elif journal == 'aomj' or journal == 'aomr':
             if soup.find('span', {'class': 'result__count'}) is not None:
                 total_hits = soup.find('span', {'class': 'result__count'}).text
-                return 'Total number of hits returned for {} in {} is {}'.format(self.search_tag, self.journal_title[journal], total_hits)
+                return 'Hits for: "{}" in {} is {}'.format(self.search_tag, Constants.journal_title[journal], total_hits)
             else:
                 total_hits = '0'
                 return 'There were 0 total results'
@@ -110,7 +85,7 @@ class ScanForResults:
         elif journal == 'asq':
             if soup.find('div', {'class': 'paginationStatus'}) is not None:
                 total_hits = soup.find('div', {'class': 'paginationStatus'}).text.split()
-                return 'Total number of hits returned for {} in {} is {}'.format(self.search_tag, self.journal_title[journal], total_hits[-1])
+                return 'Hits for: "{}" in {} is {}'.format(self.search_tag, Constants.journal_title[journal], total_hits[-1])
             else:
                 total_hits = '0'
                 return 'There were 0 total results'

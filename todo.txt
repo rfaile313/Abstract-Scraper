@@ -1,6 +1,6 @@
 #TODO:
 
-- requestLogic File Lines 76-116: find a better and more accurate way to return the integer.
+- requestLogic File Lines 76-116: find a better and more accurate way to find and return the integer.
  we may have to write a scrubbing function or something because a comma will throw the whole thing off. 
  sometimes doesn't even return the correct thing in terminal as string
 

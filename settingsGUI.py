@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+from constants import Constants
 
 class SettingsMenu:
 
@@ -48,7 +49,7 @@ class SettingsMenu:
             [sg.Submit(tooltip='Click to Submit'), sg.Cancel()]]
 
         #Make Window
-        window = sg.Window('Abstract Scraper v{}'.format(self.version), layout, default_element_size=(40, 1), grab_anywhere=False)
+        window = sg.Window('Abstract Scraper v{}'.format(self.version), layout, default_element_size=(40, 1), grab_anywhere=False, icon=Constants.books_base_64)
         event, values = window.read()
 
         #Means they clicked X or Cancel

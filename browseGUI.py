@@ -1,21 +1,29 @@
-#TODO this is where we'll display the results from each journal and offer the 
-#+ chance to browse the abstracts from those journals
-
-'''
 import PySimpleGUI as sg
+from constants import Constants
 
-sg.theme('LightGrey5')
+class BrowseGUI:
 
-layout = [[sg.Text('Rename files or folders')],
-            [sg.Text('Source for Folders', size=(15, 1)), sg.InputText(), sg.FolderBrowse()],
-            [sg.Text('Source for Files ', size=(15, 1)), sg.InputText(), sg.FolderBrowse()],
-            [sg.Submit(), sg.Cancel()]]
+    def __init__(self):
+        sg.theme('LightGrey5')
+        self.layout = []
 
-window = sg.Window('Rename Files or Folders', layout)
+    def append_journal(self, text, journalName, journalKey):
+        #Append Journal Text, Name, and Key specified in call to the laout
+        self.layout.append([sg.Frame(layout=[
+        [sg.Text('Results:', justification='center')], 
+        [sg.Text(text, key=journalKey, justification='center')],
+        [sg.Button('Browse Abstracts from this Journal')],
+        [sg.Text('_' * 60)]
+        ], title=journalName,title_color='black', relief=sg.RELIEF_SUNKEN)])
+        
+    def create_window(self):
+        #create layout with journals from append_journal
+        self.window = sg.Window('Search Results', self.layout, icon=Constants.spyglass_base_64)
 
-event, values = window.read()
-window.close()
-folder_path, file_path = values[0], values[1]       # get the data from the values dictionary
-print(folder_path, file_path)
+        event, values = self.window.read()
+        return event, values
+        
+    def close_window(self):
+        self.window.close()
+  
 
-'''
