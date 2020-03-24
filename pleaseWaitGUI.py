@@ -1,5 +1,4 @@
 import PySimpleGUI as sg
-import time
 
 def show_loading():
     sg.PopupAnimated('images/searching.gif',

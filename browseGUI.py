@@ -18,7 +18,7 @@ class BrowseGUI:
         
     def create_window(self):
         #create layout with journals from append_journal
-        self.window = sg.Window('Search Results', self.layout, icon=Constants.spyglass_base_64)
+        self.window = sg.Window('Search Results', self.layout, icon=None)
 
         event, values = self.window.read()
         return event, values

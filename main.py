@@ -11,7 +11,7 @@ from settingsGUI import SettingsMenu
 from requestLogic import ScanForResults
 from browseGUI import BrowseGUI
 from constants import Constants
-from pleaseWaitGUI import *
+from pleaseWaitGUI import show_loading, remove_loading
 
 def main():
     #instantiate settings gui
