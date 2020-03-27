@@ -17,6 +17,13 @@ class BrowseGUI:
         ], title=journalName,title_color='black', relief=sg.RELIEF_SUNKEN)])
         
     def create_window(self):
+        
+        #Append Buttom Buttons
+        self.layout.append([sg.Frame(layout=[
+        [sg.Button('Search a Different Term', key='anotherSearch', button_color=('white','springgreen4')), sg.Button('Quit', key='choseQuit', button_color=('white','firebrick3'))],
+        ], title='More Options:', relief=sg.RELIEF_FLAT)]
+        )
+        
         #create layout with journals from append_journal
         self.window = sg.Window('Search Results', self.layout, icon=None)
 

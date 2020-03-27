@@ -70,7 +70,7 @@ class ScanForResults:
         elif journal == 'jams':
             if soup.find('div', {'class': 'header'}) is not None:
                 total_hits = soup.find('div', {'class': 'header'}).text
-                #idk why this journal string slice is so weird -- we need to fix all of these PALLAV
+                #TODO idk why this journal string slice is so weird -- we need to fix all of these ~@rfaile313
                 return 'Hits for: "{}" in {} is {}'.format(self.search_tag, Constants.journal_title[journal], total_hits[2:9])
             else:
                 total_hits = '0'
@@ -93,7 +93,9 @@ class ScanForResults:
                 total_hits = '0'
                 return 'There were 0 total results'
 
-    
+
+    #TODO Build below functions for abstract text request logic
+
     def crawler(self):
         pass
 

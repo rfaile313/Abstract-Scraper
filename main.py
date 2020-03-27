@@ -19,7 +19,7 @@ def main():
     #run settings GUI and return values into variables
     setting_event, setting_value = settings.create_settings_window()
 
-    #TODO Please wait window probably a nice thing to have here:
+    #Show wait/searching GUI
     show_loading()
     #instantiate RequestLogic Object
     scan = ScanForResults()
@@ -65,7 +65,7 @@ def main():
     #run settings GUI and return values into variables
     browse_event, browse_value = browse.create_window()
     #browse_value doesnt return anything right now because theres no input
-    #browse_event returns the -KEY- inserted in browse.append_journal above.
+    #browse_event returns the -KEY- inserted in browse.append_journal above which is the journal that needs to be searched for abstracts. 
     print('Event:', browse_event)
     print('Values:', browse_value)
         

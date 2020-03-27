@@ -11,7 +11,7 @@ def show_loading():
     keep_on_top=True,
     location=(None, None),
     alpha_channel=None,
-    time_between_frames=500,
+    time_between_frames=50,
     transparent_color=None)
 
 def remove_loading():
