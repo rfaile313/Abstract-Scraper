@@ -19,7 +19,7 @@ class BrowseGUI:
         
         #Append Buttom Buttons
         self.layout.append([sg.Frame(layout=[
-        [sg.Button('Search a Different Term', key='anotherSearch', button_color=('white','springgreen4')), sg.Button('Quit', key='choseQuit', button_color=('white','firebrick3'))],
+        [sg.Button('Quit', key='choseQuit', button_color=('white','firebrick3')), sg.Button('Search a Different Term', key='anotherSearch', button_color=('white','green'))],
         ], title='More Options:', relief=sg.RELIEF_FLAT)]
         )
         

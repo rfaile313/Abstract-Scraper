@@ -57,8 +57,6 @@ def main():
     #browse_event returns the -KEY- inserted in browse.append_journal above which is the journal that needs to be searched for abstracts. 
     print('Event:', browse_event)
     print('Values:', browse_value)
-    if browse_event == 'anotherSearch':
-
         
 if __name__ == '__main__':
     main()

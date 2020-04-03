@@ -8,6 +8,4 @@
 
 - next GUI screens to browse abstracts and search around and stuff.
 
-- improve current browse GUI (cancel, more options, back to settings, etc)
-
-
+- improve current browse GUI (cancel button cancels but need another search button to work and stuff)
