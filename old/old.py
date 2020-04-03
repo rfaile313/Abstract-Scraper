@@ -48,7 +48,7 @@ while True:
         sort_by_tag_jams = 'newestFirst'
 
 
-    journal_title = {# marketing journals
+    j_title_dict = {# marketing journals
                      'jams': 'Journal of Academy of Marketing Science',
                      'jm': 'Journal of Marketing',
                      'jmr': 'Journal of Marketing Research',
@@ -72,7 +72,7 @@ while True:
                'aomr':{'text1': search_tag, 'AfterYear': after_year_tag, 'sortBy': sort_by_tag},
                'asq': {'text1': search_tag, 'AfterYear': after_year_tag, 'sortBy': sort_by_tag}}
 
-    base_urls = {# marketing journals
+    base_url_dict = {# marketing journals
                  'jm': 'https://journals.sagepub.com/action/doSearch?&publication=jmxa',
                  'jmr': 'https://journals.sagepub.com/action/doSearch?&publication=mrja',
                  'mktsc': 'https://pubsonline.informs.org/action/doSearch?&publication[]=mksc',
@@ -85,7 +85,7 @@ while True:
 
 
     def url_builder(journal, search_tag, after_year_tag, sort_by_tag):
-        return (requests.get(base_urls[journal], params=payload[journal]).url)
+        return (requests.get(base_url_dict[journal], params=payload[journal]).url)
 
 
     ''' Get max results for each website one by one '''
@@ -99,7 +99,7 @@ while True:
         if journal == 'mktsc' or journal == 'mgmtsc':
             if soup.find('span', {'class': 'result__count'}) is not None:
                 total_hits = soup.find('span', {'class': 'result__count'}).text
-                print('Total number of results returned for', journal_title[journal], ' is ', total_hits)
+                print('Total number of results returned for', j_title_dict[journal], ' is ', total_hits)
             else:
                 total_hits = '0'
                 print('There was 0 total results')
@@ -107,7 +107,7 @@ while True:
         elif journal == 'jm' or journal == 'jmr':
             if soup.find('div', {'class': 'paginationStatus'}) is not None:
                 total_hits = soup.find('div', {'class': 'paginationStatus'}).text.split()
-                print('Total number of results returned for journal', journal_title[journal], ' is ', total_hits[-1])
+                print('Total number of results returned for journal', j_title_dict[journal], ' is ', total_hits[-1])
             else:
                 total_hits = ['0']
                 print('There was 0 total results')
@@ -115,7 +115,7 @@ while True:
         elif journal == 'jams':
             if soup.find('div', {'class': 'header'}) is not None:
                 total_hits = soup.find('div', {'class': 'header'}).text.split()
-                print('Total number of results returned for', journal_title[journal], ' is ', total_hits[0])
+                print('Total number of results returned for', j_title_dict[journal], ' is ', total_hits[0])
             else:
                 total_hits = ['0']
                 print('There was 0 total results')
@@ -124,7 +124,7 @@ while True:
         elif journal == 'aomj' or journal == 'aomr':
             if soup.find('span', {'class': 'result__count'}) is not None:
                 total_hits = soup.find('span', {'class': 'result__count'}).text
-                print('Total number of results returned for', journal_title[journal], ' is ', total_hits)
+                print('Total number of results returned for', j_title_dict[journal], ' is ', total_hits)
             else:
                 total_hits = '0'
                 print('There was 0 total results')
@@ -132,7 +132,7 @@ while True:
         elif journal == 'asq':
             if soup.find('div', {'class': 'paginationStatus'}) is not None:
                 total_hits = soup.find('div', {'class': 'paginationStatus'}).text.split()
-                print('Total number of results returned for journal', journal_title[journal], ' is ', total_hits[-1])
+                print('Total number of results returned for journal', j_title_dict[journal], ' is ', total_hits[-1])
             else:
                 total_hits = ['0']
                 print('There was 0 total results')
@@ -195,7 +195,7 @@ while True:
 
     def get_abstracts(journal, page_urls):
         if max_results > 0:
-            print('\nFetching abstracts from ' + journal_title[journal] + '\n')
+            print('\nFetching abstracts from ' + j_title_dict[journal] + '\n')
             journal_links = []
             for url in page_urls:
                 html = requests.get(url).text
@@ -278,7 +278,7 @@ while True:
                         break
                 all_matches.append(get_stats(search_tag, abstract=abs_result)[0])
         else:
-            print('\nThere was 0 searches in ' + journal_title[journal])
+            print('\nThere was 0 searches in ' + j_title_dict[journal])
 
 
 
@@ -290,7 +290,7 @@ while True:
     for journal in journals_to_print_list:
         all_matches = []    
         if journal in allowed_journal_tags:
-            print('\nLooking up ' + journal_title[journal] + '\n')
+            print('\nLooking up ' + j_title_dict[journal] + '\n')
             max_results = get_max_results(journal)
             if max_results > 0:
                 range_needed = input('\nEnter range of results needed separated by - (dash): ')

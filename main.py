@@ -1,17 +1,46 @@
-__author__ = "@pallav_routh, @rfaile313"
+__author__ = "@rfaile313, @pallav_routh"
 __copyright__ = "© Copyright 2020"
-__credits__ = ["Pallav Routh", "Rudy Faile"]
+__credits__ = ["Rudy Faile", "Pallav Routh"]
 __license__ = "GPL"
-__version__ = "1.0.1"
-
-__email__ = "pallav.routh@utsa.edu"
+__version__ = "1.0.2"
 __status__ = "Development"
 
+#Standard lib imports
+import time
+#Internal imports
 from settingsGUI import SettingsMenu
 from requestLogic import ScanForResults
 from browseGUI import BrowseGUI
 from constants import Constants
-from pleaseWaitGUI import show_loading, remove_loading
+from CustomProgressMeter import CustomProgressMeter
+
+#instantiate RequestLogic object to handle requests
+scan = ScanForResults()
+
+#instantiate BrowserGUI object in order to insert journals into layout:
+browse = BrowseGUI()
+
+# Helper functions for the main loop. Can probably be teased out into other files
+# But would need to use the created objects above in a different way
+def search_and_append(keys, loop):
+    #Value[0] is search string / 1-8 are journals/9 is year/10 is sort
+    scan.search_sort(keys[0], Constants.journal_abbrv_list[loop-1], keys[9], keys[10])
+    journal = scan.get_max_results(scan.journal)
+    browse.append_journal(journal, Constants.j_title_list[loop-1], Constants.journal_keys[loop-1])
+    
+def parse_selections(keys):
+    #create progress bar
+    progress = CustomProgressMeter(8, 'Checking Journals')
+    for i in range(1,9):
+        if keys[i]:
+            progress.progress_increase(i, Constants.j_title_list[i-1])
+            search_and_append(keys, i)
+        else:
+            progress.progress_increase(i, 'Finishing up...')
+            time.sleep(0.2)
+    #kill window
+    progress.close_window()
+# End helper functions--------------
 
 def main():
     #instantiate settings gui
@@ -19,57 +48,18 @@ def main():
     #run settings GUI and return values into variables
     setting_event, setting_value = settings.create_settings_window()
 
-    #Show wait/searching GUI
-    show_loading()
-    #instantiate RequestLogic Object
-    scan = ScanForResults()
+    #check for results and append them to next gui
+    parse_selections(setting_value)
 
-    #instantiate BrowserGUI in order to insert journals into layout:
-    browse = BrowseGUI()
-
-    #Value[0] is search string / 1-8 are journals/9 is year/10 is sort
-    if setting_value[1] == True:
-        scan.search_sort(setting_value[0], 'jams', setting_value[9], setting_value[10])
-        jams = scan.get_max_results(scan.journal)
-        browse.append_journal(jams, Constants.journal_titles[0], Constants.journal_keys[0])
-    if setting_value[2] == True:
-        scan.search_sort(setting_value[0], 'jm', setting_value[9], setting_value[10])
-        jm = scan.get_max_results(scan.journal)
-        browse.append_journal(jm, Constants.journal_titles[1], Constants.journal_keys[1])
-    if setting_value[3] == True:
-        scan.search_sort(setting_value[0], 'jmr', setting_value[9], setting_value[10])
-        jmr = scan.get_max_results(scan.journal)
-        browse.append_journal(jmr, Constants.journal_titles[2], Constants.journal_keys[2])
-    if setting_value[4] == True:
-        scan.search_sort(setting_value[0], 'mktsc', setting_value[9], setting_value[10])
-        mktsc = scan.get_max_results(scan.journal)
-        browse.append_journal(mktsc, Constants.journal_titles[3], Constants.journal_keys[3])
-    if setting_value[5] == True:
-        scan.search_sort(setting_value[0], 'mgmtsc', setting_value[9], setting_value[10])
-        mgmtsc = scan.get_max_results(scan.journal)
-        browse.append_journal(mgmtsc, Constants.journal_titles[4], Constants.journal_keys[4])
-    if setting_value[6] == True:
-        scan.search_sort(setting_value[0], 'asq', setting_value[9], setting_value[10])
-        asq = scan.get_max_results(scan.journal)
-        browse.append_journal(asq, Constants.journal_titles[5], Constants.journal_keys[5])
-    if setting_value[7] == True:
-        scan.search_sort(setting_value[0], 'aomj', setting_value[9], setting_value[10])
-        aomj = scan.get_max_results(scan.journal)
-        browse.append_journal(aomj, Constants.journal_titles[6], Constants.journal_keys[6])
-    if setting_value[8] == True:
-        scan.search_sort(setting_value[0], 'aomr', setting_value[9], setting_value[10])
-        aomr = scan.get_max_results(scan.journal)
-        browse.append_journal(aomr, Constants.journal_titles[7], Constants.journal_keys[7])
-    
-    remove_loading()
     #run settings GUI and return values into variables
     browse_event, browse_value = browse.create_window()
     #browse_value doesnt return anything right now because theres no input
     #browse_event returns the -KEY- inserted in browse.append_journal above which is the journal that needs to be searched for abstracts. 
     print('Event:', browse_event)
     print('Values:', browse_value)
-        
+    if browse_event == 'anotherSearch':
 
+        
 if __name__ == '__main__':
     main()
 

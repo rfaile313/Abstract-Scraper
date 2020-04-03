@@ -10,10 +10,9 @@ class BrowseGUI:
     def append_journal(self, text, journalName, journalKey):
         #Append Journal Text, Name, and Key specified in call to the laout
         self.layout.append([sg.Frame(layout=[
-        [sg.Text('Results:', justification='center')], 
         [sg.Text(text)],
         [sg.Button('Browse Abstracts from this Journal', key=journalKey)],
-        [sg.Text('_' * 60)]
+        [sg.Text('_' * 40)]
         ], title=journalName,title_color='black', relief=sg.RELIEF_SUNKEN)])
         
     def create_window(self):
@@ -28,6 +27,9 @@ class BrowseGUI:
         self.window = sg.Window('Search Results', self.layout, icon=None)
 
         event, values = self.window.read()
+        if event == 'choseQuit' or event is None:
+            exit()
+
         return event, values
         
     def close_window(self):

@@ -1,6 +1,6 @@
 class Constants:
 
-    journal_titles = [
+    j_title_list = [
     'Journal of Academy of Marketing Science',
     'Journal of Marketing',
     'Journal of Marketing Research',
@@ -20,7 +20,17 @@ class Constants:
         '-AOMJ-',
         '-AOMR-']
 
-    journal_title = {
+    journal_abbrv_list = [
+        'jams',
+        'jm',
+        'jmr',
+        'mktsc',
+        'mgmtsc',
+        'asq',
+        'aomj',
+        'aomr']
+
+    j_title_dict = {
             # marketing journals
             'jams': 'Journal of Academy of Marketing Science',
             'jm': 'Journal of Marketing',
@@ -32,7 +42,7 @@ class Constants:
             'aomj':'Academy of Management Journal',
             'aomr':'Academy of Management Review'}
 
-    base_urls = {
+    base_url_dict = {
             # marketing journals
             'jm': 'https://journals.sagepub.com/action/doSearch?&publication=jmxa',
             'jmr': 'https://journals.sagepub.com/action/doSearch?&publication=mrja',

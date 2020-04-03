@@ -20,19 +20,19 @@ class SettingsMenu:
 
             #Marketing Journal Checkboxes
             [sg.Frame(layout=[
-            [sg.Checkbox('Journal of Academy of Marketing Science', default=True),##1 True/False
-            sg.Checkbox('Journal of Marketing')],##2 True/False
-            [sg.Checkbox('Journal of Marketing Research'),##3 True/False
-            sg.Checkbox('Marketing Science'),##4 True/False
-            sg.Checkbox('Management Science')],##5 True/False
+            [sg.Checkbox(Constants.j_title_list[0], default=True),##1 True/False
+            sg.Checkbox(Constants.j_title_list[1])],##2 True/False
+            [sg.Checkbox(Constants.j_title_list[2]),##3 True/False
+            sg.Checkbox(Constants.j_title_list[3]),##4 True/False
+            sg.Checkbox(Constants.j_title_list[4])],##5 True/False
             
             ], title='Marketing Journals',title_color='black', relief=sg.RELIEF_SUNKEN)],
             
             #Management Journal Chckboxes
             [sg.Frame(layout=[
-            [sg.Checkbox('Administrative Science Quarterly'),##6 True/False  
-            sg.Checkbox('Academy of Management Journal')],##7 True/False
-            [sg.Checkbox('Academy of Management Review')],##8 True/False
+            [sg.Checkbox(Constants.j_title_list[5]),##6 True/False  
+            sg.Checkbox(Constants.j_title_list[6])],##7 True/False
+            [sg.Checkbox(Constants.j_title_list[7])],##8 True/False
             
             ], title='Management Journals',title_color='black', relief=sg.RELIEF_SUNKEN)],
             
